@@ -1,0 +1,47 @@
+{% extends "main.html" %}
+{% block content %}
+  
+    <style>
+        .container a{
+            text-decoration: none;
+            color: rgb(6, 101, 6);
+        }
+        .container a:hover{
+            color: red;
+        }
+        .hh{
+            justify-content: center;
+            padding-left: 545px;
+        }
+
+    </style>
+    <div class="hh"><h1 >Chat</h1></div>
+    
+    <div class="box">
+        <div class="container">
+            {% for message in chat %}
+            {% if message.chadd.product_name == chad.product_name %}
+            
+            <a href="{% url 'profile' request.user.id %}"><h3>@{{message.chat_user}}</h3></a> 
+            <p>{{message.body}}</p>
+            <h4>{{message.created|timesince}} ago</h4>
+            {% if request.user == message.chat_user %}
+            <a href="{% url 'delete-message' message.id %}">Delete</a>
+            {% endif %}
+            <hr>
+            {% endif %}
+            {% endfor %}
+
+            {% if request.user.is_authenticated %}
+                <div>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="body" placeholder="Write your message here">
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+        
+        
+{% endblock %}

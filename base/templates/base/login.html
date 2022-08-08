@@ -1,0 +1,84 @@
+{% extends "main.html" %}
+{% block content %}
+
+<style>
+
+    .body{
+        padding: 0;
+    }
+    .rr{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        position: absolute;
+        align-items: center;
+        top: 25%;
+        left: 32%;
+        width: 500px;
+        text-align: center;
+        border: 10px;
+        border-radius: 25px;
+        background-color: rgb(208, 216, 208);
+    }
+    .rr form{
+        padding: 4px;
+        align-items: center;
+    }
+    .rr h1{
+        color: brown;
+        background-color: rgb(78, 77, 76);
+        font-weight: bold;
+        padding: 8px;
+        border-radius: 8px;
+    }
+    .hh{
+        padding: 4px;
+    }
+
+</style>
+
+  
+
+<div class="bb">
+
+</div>
+<div class="rr">
+    <h1>Login</h1>
+    {% if page == 'login' %}
+    <div class="room">
+        <div class="mainn">
+            <form method="POST" id="3">
+                {% csrf_token %}
+                <div class="hh">
+                <p><h3>Userame</h3></p>
+                <input type="text" name="username"  id="" placeholder="Enter Username">
+                </div>
+                
+                <div class="hh">
+                    <p><h3>Password</h3></p>
+                    <input type="password" name="password"  placeholder="Enter password">
+                </div>
+                <div id="oo" class="hh">
+                    <input  type="submit" value="Login">
+                </div>
+            </form>
+        </div>
+        
+        <div class="hh" id="1">
+            <p>Havent u registered</p> 
+        </div>
+        <div class="hh" id="2">
+           <p><a href="{% url 'register' %}">Sign Up</a></p> 
+        </div>
+    </div>
+    {% else %}
+    <div class="room">
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Register">
+        </form>
+        <h5>Already signed up?</h5>
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock  %}

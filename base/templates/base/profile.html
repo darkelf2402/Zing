@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% block content %}
+
+<style>
+  
+</style>
+  @{{user.username}}
+  {% for prod in prods %}
+
+  <h4>            Product hosted is {{prod.product_name}}</h4>
+  <h5>            Price is {{prod.price}}</h5>
+    
+  {% endfor %}
+{% endblock %}

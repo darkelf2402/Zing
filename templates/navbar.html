@@ -1,0 +1,80 @@
+<style>
+.collapse navbar-collapse{
+    display: flex;
+    justify-content: space-between;
+}
+.nav1{
+    flex: 1;
+}
+.nav2{
+    flex: 2;
+}
+.nav2 button{
+    color: burlywood;
+}
+.nav3 a{
+    color: burlywood;
+    font-weight: bold;
+}
+.nav3 a:hover{
+    color: brown;
+}
+.nav3{
+    padding-left: 230px;
+}
+.nav-item1{
+    background-color: rgb(251, 251, 251);
+    border-radius: 3px;
+    padding: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.nav-item1 a{
+    font-weight: 700;
+    font-style: oblique;
+    text-decoration: none;
+    color: blueviolet;
+}
+</style>
+
+
+
+<nav class="navbar navbar-expand-lg bg-success">
+    <div class="container-fluid">
+        <ul class="nav nav-pills nav-fill">
+        <li class="nav-item1">
+            <a href="{% url 'home' %}">ZING</a>
+        </li>
+        </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="nav1">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <h3><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a></h3>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="nav2">
+            <form class="d-flex" role="search" action="{% url 'home' %}" method="GET" >
+                <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+        </div>
+        <div class="nav3">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                  <h3><a class="nav-link" href="{% url 'logout' %}">Logout</a></h3>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <h3><a class="nav-link" href="{% url 'login' %}">Login</a></h3>
+                </li>
+                {% endif %}
+              </ul>
+        </div>
+      </div>
+    </div>
+</nav>
